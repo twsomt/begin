@@ -1,12 +1,14 @@
-x = [[1, 5], [3, 4], [2, 0]]
-# print(any(2 in i for i in x))
-# test
+x = 'Кошка'
+def false_translate(x):
+    return x[::-1].capitalize()
 
+print(false_translate(x))
 
-myset = set('ъъ эээ юююю яяяяя')
-# print(len(myset))
-# print(myset)
+set1 = {'Yellow', 'Orange', 'Black'}
+set2 = {'Orange', 'Blue', 'Pink'}
 
-numbers = {9089, -67, -32, 1, 78, 23, -65, 99, 9089, 34, -32, 0, -67, 1, 11, 111, 111, 1, 23}
-for i in numbers:
-    print(i)
+set1.difference_update(set2)
+print(*set1)
+
+x = {'a', 'b'}
+print(x * 2)
