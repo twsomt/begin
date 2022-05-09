@@ -63,9 +63,5 @@ text = 'Hello, World!'
 for symbol in text:
     for k, v in symbols.items():
         if symbol.capitalize() in v:
-            #print(k * (v.index(symbol.capitalize()) + 1), end='')
-
-
-
-
+            print(k * (v.index(symbol.capitalize()) + 1), end='')
 
