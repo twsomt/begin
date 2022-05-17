@@ -1,3 +1,4 @@
+# принимает на вход длину пароля и оп-оп генерит
 from string import ascii_letters, punctuation
 from random import sample
 length_pass = int(input('Какойдлины пароль сгенерировать?'))
