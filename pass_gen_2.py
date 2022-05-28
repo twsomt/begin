@@ -1,3 +1,4 @@
+# юзаем pandas
 # принимает на вход длину пароля и оп-оп генерит
 from string import ascii_letters, punctuation
 from random import sample
