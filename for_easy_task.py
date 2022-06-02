@@ -57,5 +57,74 @@
 # print(x + y)
 
 
-def func(qty): return {chr(96 + i):i for i in range(1, qty + 1)}
-print(func(3))
+# def func(qty): return {chr(96 + i):i for i in range(1, qty + 1)}
+# print(func(3))
+
+# def fancy(length, char1='-', char2='*'):
+#     return (char1 + char2) * length + char1
+
+
+# print(fancy(char2='!'))
+
+# x = ('Timur', 'Roman', 'Ruslan')
+# print(' and '.join(x))
+
+
+# def greet(first_name, *args):
+#     return ' and '.join(args)
+
+# print(greet('Timur', 'Roman', 'Ruslan'))
+# #Hello, Timur and Roman and Ruslan!
+
+# def print_products(*args):
+#     temp = [i for i in args if type(i) is str and i]
+#     if temp:
+#         for i in range(1, len(temp) + 1):
+#             print(f'{i}) {temp[i-1]}')
+#     else:
+#         print('Нет продуктов')
+
+# print_products([4], {}, 1, 2, {'Beegeek'}, '') 
+
+# def info_kwargs(**kwargs):
+#     for k, v in sorted(kwargs.items()):
+#         print(f'{k}: {v}')
+
+# info_kwargs(first_name='Timur', last_name='Guev', age=28, job='teacher') 
+
+
+# def f1(x):
+#     return 2*x+1
+
+
+# def f2(x):
+#     return x**2
+
+
+# def f3(x):
+#     return -x**2+1
+
+
+# def f4(x):
+#     return x-3
+
+
+# funcs = [f1, f2, f3, f4]
+# i = 4
+# print(funcs[i](2))
+
+# from math import sqrt, pow
+# points = [(-1, 1), (5, 6), (12, 0), (4, 3), (0, 1), (-3, 2), (0, 0), (-1, 3), (2, 0), (3, 0), (-9, 1), (3, 6), (8, 8)]
+
+# def coords(i):
+#     return sqrt(pow(i[0], 2) + pow(i[1], 2))
+
+# print(sorted(points, key=coords))
+
+
+nums = tuple('111 14 79 7 4 123 90 45 12 171'.split())
+
+def sorter(i):
+    return sum(map(int, i)), int(i)
+
+print(*sorted(nums, key=sorter))
