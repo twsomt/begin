@@ -1,3 +1,6 @@
-x = [1, 2]
-y = [3, 4]
-print(list(zip(x, y)))
+x = [2, 0, 3, 12, 'foo', 15, 100, 18]
+
+def is_empty(self):
+    return not self
+
+print(is_empty(x))
