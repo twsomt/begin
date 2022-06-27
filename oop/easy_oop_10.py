@@ -28,5 +28,6 @@ persons= [
 
 for person in persons:
     x = Worker(person[0], person[1], person[2], person[3])
+    x.get_info()
 
 
