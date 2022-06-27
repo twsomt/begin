@@ -1,50 +1,53 @@
-class Human:
-    def __init__(self, name):
+# импортируем функции из библиотеки math для рассчёта расстояния
+from math import radians, sin, cos, acos
+
+class Point:
+    def __init__(self, latitude, longitude):
+        self.latitude = radians(latitude)
+        self.longitude = radians(longitude)
+
+    # считаем расстояние между двумя точками в км
+    def distance(self, other):
+        cos_d = sin(self.latitude) * sin(other.latitude) + cos(self.latitude) * cos(other.latitude) * cos(
+        self.longitude - other.longitude)
+
+        return 6371 * acos(cos_d)
+
+
+class City(Point):
+    def __init__(self, latitude, longitude, name, population):
+        super().__init__(latitude, longitude)
         self.name = name
+        self.population = population
 
-    def answer_question(self, question):
-        print('Очень интересный вопрос! Не знаю.')
-
-
-class Student(Human):
-    def ask_question(self, someone, question):
-        print(f'{someone.name}, {question}')
-        someone.answer_question(question)
-        print()	
+    def show(self):
+        print(f"Город {self.name}, население {self.population} чел.")
 
 
-class Curator(Human):
-    def answer_question(self, question):
-        if question == 'мне грустненько, что делать?':
-            print('Держись, всё получится. Хочешь видео с котиками?')
-        else:
-            friend.answer_question(question)
+class Mountain(Point):
+    def __init__(self, latitude, longitude, name, height):
+        super().__init__(latitude, longitude)
+        self.name = name
+        self.height = height
+    
+    def show(self):
+        print(f'Высота горы {self.name} - {self.height} м.')
 
-class Mentor(Human):
-    def answer_question(self, question):
-        if question == 'как устроиться работать питонистом?':
-            print('Сейчас расскажу.')
-        else:
-            print('Отдохни и возвращайся с вопросами по теории.')
-
-class CodeReviewer(Human):
-    def answer_question(self, question):
-        if question == 'что не так с моим проектом?':
-            print('О, вопрос про проект, это я люблю.')
-        else:
-            friend.answer_question(question)
+# эта функция печатает расстояние
+# между двумя любыми наследниками класса Point
+def print_how_far(geo_object_1, geo_object_2):
+    print(f'От точки «{geo_object_1.name}» до точки «{geo_object_2.name}» — {geo_object_1.distance(geo_object_2)} км.')
 
 
-# следующий код менять не нужно, он работает, мы проверяли
-student1 = Student('Тимофей')
-curator = Curator('Марина')
-mentor = Mentor('Ира')
-reviewer = CodeReviewer('Евгений')
-friend = Human('Виталя')
+# основной код
+moscow = City(55.7522200, 37.6155600, 'Москва', 12615882)
+everest = Mountain(27.98791, 86.92529, 'Эверест', 8848)
+chelyabinsk = City(55.154, 61.4291, 'Челябинск', 1200703)
 
-student1.ask_question(curator, 'мне грустненько, что делать?')
-student1.ask_question(mentor, 'мне грустненько, что делать?')
-student1.ask_question(reviewer, 'когда каникулы?')
-student1.ask_question(reviewer, 'что не так с моим проектом?')
-student1.ask_question(friend, 'как устроиться на работу питонистом?')
-student1.ask_question(mentor, 'как устроиться работать питонистом?')
+
+print(City.__dict__)
+
+moscow.show()
+everest.show()
+print_how_far(moscow, everest)
+print_how_far(moscow, chelyabinsk)
