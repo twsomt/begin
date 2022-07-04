@@ -1,19 +1,5 @@
-# FALSE VERSION
-
-class Worker:
-    worker_objects = []
-
-    def __init__(self, name, salary, gender, passport):
-        self.name = name
-        self.salary = salary
-        self.gender = gender
-        self.passport = passport
-        Worker.worker_objects.append(self)
-    
-    def get_info(self):
-        print(f'Worker {self.name}; passport-{self.passport}')
-
-persons= [
+from dataclasses import dataclass
+persons = [
     ('Allison Hill', 334053, 'M', '1635644202'),
     ('Megan Mcclain', 191161, 'F', '2101101595'),
     ('Brandon Hall', 731262, 'M', '6054749119'), 
@@ -26,8 +12,20 @@ persons= [
     ('Amber Perez', 403445, 'M', '0602870126')
 ]
 
-for person in persons:
-    x = Worker(person[0], person[1], person[2], person[3])
-    x.get_info()
+@dataclass
+class Worker:
+    name: str
+    salary: str
+    gender: str
+    passport: str
+
+    def get_info(self) -> None:
+        print(f'Worker {self.name}; passport-{self.passport}')
 
 
+worker_objects = []
+for i in persons:
+    worker_objects.append(Worker(*i))
+
+for i in worker_objects:
+    i.get_info()
