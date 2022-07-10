@@ -30,3 +30,5 @@ print(emp.work.company_name)
 print(emp.work.location)
 emp.work.display_company_info()
 
+a, *b, c = 'No money', 'no honey'
+print(b)
