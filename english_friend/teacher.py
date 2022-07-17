@@ -1,8 +1,8 @@
-import random 
-import os 
-import time
+from random import shuffle
+from os import system
+from time import sleep
 
-os.system('CLS') 
+choice = input('Перемешивать переводы? Enter - да, любое другое значение - нет.')
 
 with open('words.txt', encoding='UTF-8') as file:
     phrases_words = {}
@@ -13,18 +13,26 @@ with open('words.txt', encoding='UTF-8') as file:
             temp.append(x)
             
             if len(temp) == 2:
+                if choice == '':
+                    phrases_words[temp[1]] = temp[0]
+
                 phrases_words[temp[0]] = temp[1]
                 temp = []
 
 loop = 1
+keys = list(phrases_words)
 
+if choice == '':
+    cnt_words = int(len(keys) / 2)
+else:
+    cnt_words = len(keys)
+    
 while True:
-    keys = list(phrases_words)
-    random.shuffle(keys)
-
+    shuffle(keys)
 
     for key in keys:
-        print(f'Круг номер: {loop}. Слов разучивается: {len(keys)} ')
+        system('CLS') 
+        print(f'Круг номер: {loop}. Слов разучивается: {cnt_words} ')
         print(key)
         x = input('')
 
@@ -32,10 +40,9 @@ while True:
             raise SystemExit
         elif x.isnumeric():
             print(phrases_words[key])
-            time.sleep(int(x))
+            sleep(int(x))
         else:
             print(phrases_words[key])
-            time.sleep(2)
+            sleep(2)
 
-        os.system('CLS')
     loop += 1
