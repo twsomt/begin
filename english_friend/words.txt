@@ -1,28 +1,3 @@
-Доброе утро! 
-Good morning!
-2
-
-
-Добрый день! 
-Good afternoon!
-3
-
-
-Добрый вечер! 
-Good evening!
-4
-
-
-Спокойной ночи! 
-Good night!
-5
-
-
-Приятного аппетита! 
-Enjoy your meal! / Have a nice meal! / Bon appetite!
-6
-
-
 Угощайтесь! 
 Help yourself (yourselves)!
 7
@@ -38,5 +13,29 @@ Thank you very much. – My pleasure. / You are welcome.
 9
 
 
-Рад вас видеть; рад познакомиться. – Я тоже. 
-Nice to see you. – Nice to see you too.
+Знаете, я еще не очень хорошо говорю по-английски. 
+You know, I am not very good at English yet.
+6
+
+
+Вылетело из головы. 
+I completely forgot.
+
+
+Мне кажется, все в порядке. 
+I think everything is OK / all right.
+15
+
+
+C вами все в порядке? – Все хорошо! 
+Are you OK? / Are you all right? – I’m fine!
+16
+
+
+Простите, я вас не понимаю, повторите, пожалуйста, еще раз. 
+Sorry, I don’t understand you, repeat one more time, please.
+17
+
+
+Извините, что я вас перебиваю… 
+Sorry for my interrupting you…

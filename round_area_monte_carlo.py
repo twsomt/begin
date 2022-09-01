@@ -1,5 +1,5 @@
 from random import uniform
-n = 10**6
+n = 10**3
 k = 0
 s0 = 4
 

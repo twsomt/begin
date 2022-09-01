@@ -1,0 +1,12 @@
+<p class="switch_text" id="show">Спойлер</p>
+
+
+<script>
+    const switch_text = document.querySelectorAll('.switch_text');
+    for (let i = 0; i < switch_text.length; i++) {
+        switch_text[i].addEventListener('click', function() {
+            this.innerHTML =
+            (this.innerHTML === 'Длинный текст такой длинный') ? this.innerHTML = 'Спойлер' : this.innerHTML = 'Длинный текст такой длинный';
+        })
+    }
+</script>
