@@ -1,13 +1,12 @@
-x = list(range(5))
+x = ('python', 'js', 'lua', 'ruby', 'php')
 
-print(x)
+def response_habr():
+    for key in keys:
+        resp = requests.get(BASE_URL+'/ru/search/', params={
+        'q': key,
+        'target_type': 'posts',
+        'order': 'relevance'
 
+        })
 
-del x[0]
-
-print(x)
-
-x.remove(x[4])
-
-
-print(x)
+    # some_code
