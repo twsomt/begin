@@ -1,27 +1,18 @@
 import sys
 class ListObject:
-    head_obj = None
-
     def __init__(self, data, next_obj=None):
-            self.data = data
-            self.next_obj = next_obj
+        self.data = data
+        self.next_obj = next_obj
 
     def link(self, obj):
-        if not self.head_obj:
-            self.head_obj = ListObject(obj)
-        else:
-            self.data = obj
-        node = self.head_obj
+        self.next_obj = obj
 
-        while node.next_obj:
-            node = node.next_obj
-
-        node.next_obj = ListObject(obj)
-
-# lst_in = list(map(str.strip, sys.stdin.readlines())) 
+# lst_in = list(map(str.strip, sys.stdin.readlines()))
 lst_in = list(range(10))
-print(*lst_in)
 
-for lst_elem in lst_in:
-    head_obj = ListObject(lst_elem)
-    print(head_obj.data, end=' ')
+head_obj = ListObject(lst_in[0])
+current_obj = head_obj
+for i in range(1, len(lst_in)):
+    next_obj = ListObject(lst_in[i])
+    current_obj.link(next_obj)
+    current_obj = next_obj
