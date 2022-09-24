@@ -23,3 +23,52 @@ class DataBase:
 db = DataBase()
 db.insert(lst_in)
 print(db.select(0, 1))
+
+
+matrix = [
+    [False, True, False],
+    [True, False, False],
+    [False, False, True]
+]
+
+res = [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+]
+
+for i in range(3):
+            for j in range(3):
+                if i == 0:
+                    if j == 0:
+                        res[i][j] = sum(map(lambda x: 1 if x else 0, (matrix[i][j+1], matrix[i+1][j+1], matrix[i+1][j])))
+                    elif j == 3-1:
+                        res[i][j] = sum(map(lambda x: 1 if x else 0, (matrix[i][j-1], matrix[i+1][j-1], matrix[i+1][j])))
+                    else:
+                        res[i][j] = sum(map(lambda x: 1 if x else 0, (matrix[i][j-1], matrix[i+1][j-1], matrix[i+1][j], matrix[i+1][j+1], matrix[i][j+1])))
+                elif i == 3-1:
+                    if j == 0:
+                        res[i][j] = sum(map(lambda x: 1 if x else 0, (matrix[i-1][j], matrix[i-1][j+1], matrix[i][j+1])))
+                    elif j == 3-1:
+                        res[i][j] = sum(map(lambda x: 1 if x else 0, (matrix[i-1][j], matrix[i-1][j-1], matrix[i][j-1])))
+                    else:
+                        res[i][j] = sum(map(lambda x: 1 if x else 0, (matrix[i][j-1], matrix[i-1][j-1], matrix[i-1][j], matrix[i-1][j+1], matrix[i][j+1])))
+                else:
+                    if j == 0:
+                        res[i][j] = sum(map(lambda x: 1 if x else 0, (matrix[i-1][j], matrix[i-1][j+1], matrix[i][j+1], matrix[i+1][j+1], matrix[i+1][j])))
+                    elif j == 3-1:
+                        res[i][j] = sum(map(lambda x: 1 if x else 0, (matrix[i-1][j], matrix[i-1][j-1], matrix[i][j-1], matrix[i+1][j-1], matrix[i+1][j])))
+                    else:
+                        res[i][j] = sum(map(lambda x: 1 if x else 0, (matrix[i-1][j-1], matrix[i-1][j], matrix[i-1][j+1], matrix[i][j+1], matrix[i+1][j+1], matrix[i+1][j], matrix[i+1][j-1], matrix[i][j-1])))
+
+for i in matrix:
+    for j in i:
+        print(str(j).ljust(6), end=' ')
+    print()
+
+print()
+
+for i in res:
+    for j in i:
+        print(str(j).ljust(6), end=' ')
+    print()
