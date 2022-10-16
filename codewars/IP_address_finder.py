@@ -1,0 +1,1 @@
+f=lambda u:[sum(map(ord,u))*i%256 for i in(1,2,3,4)]
