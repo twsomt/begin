@@ -2,9 +2,36 @@ def valid_solution(board):
     if not len(board) == 9 and not all(len(i) == 9 for i in board):
         return False
 
+    x = [1,2,3,4,5,6,7,8,9]
 
+    row = all(all(f in i for f in x) for i in board) # row
+    d = [[board[j][i] for j in range(9)] for i in range(9)]
+    col = all(all(f in i for f in x) for i in d) # column
+
+    c = [[],[],[],[],[],[],[],[],[]]
     for i in range(9):
-        print(board[0][i], end=' ')
+        for j in range(9):
+            if 0 <= i <= 2 and 0 <= j <= 2:
+                c[0].append(board[i][j])
+            elif  0 <= i <= 2 and 3 <= j <= 5:
+                c[1].append(board[i][j])
+            elif  0 <= i <= 2 and 6 <= j <= 8:
+                c[2].append(board[i][j])
+            elif 3 <= i <= 5 and 0 <= j <= 2:
+                c[3].append(board[i][j])
+            elif  3 <= i <= 5 and 3 <= j <= 5:
+                c[4].append(board[i][j])
+            elif  3 <= i <= 5 and 6 <= j <= 8:
+                c[5].append(board[i][j])
+            elif 6 <= i <= 8 and 0 <= j <= 2:
+                c[6].append(board[i][j])
+            elif  6 <= i <= 8 and 3 <= j <= 5:
+                c[7].append(board[i][j])
+            elif  6 <= i <= 8 and 6 <= j <= 8:
+                c[8].append(board[i][j])
+
+    cub = all(all(f in i for f in x) for i in c)
+    return all(i for i in (row, col, cub))
 
 
 x = [
