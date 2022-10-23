@@ -1,5 +1,5 @@
 def next_bigger(i):
-    x: list = list(str(i))
+    x = list(str(i))
     y = int(''.join(map(str, sorted(x, reverse=True))))
     z = int(''.join(map(str, sorted(x))))
     my_i = i
