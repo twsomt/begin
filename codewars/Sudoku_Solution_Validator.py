@@ -1,63 +1,79 @@
-def valid_solution(board):
-    if not len(board) == 9 and not all(len(i) == 9 for i in board):
-        return False
+def sudoku(x):
+    solution = Sudoku(x)
+    solution.solve()
+    return solution.field
 
-    x = [1,2,3,4,5,6,7,8,9]
+class Sudoku(object):
 
-    row = all(all(f in i for f in x) for i in board) # row
-    d = [[board[j][i] for j in range(9)] for i in range(9)]
-    col = all(all(f in i for f in x) for i in d) # column
+    def __init__(self, field):
+        self.field = field
+        self.varianti = [[[]]*9]*9
 
-    c = [[],[],[],[],[],[],[],[],[]]
-    for i in range(9):
-        for j in range(9):
-            if 0 <= i <= 2 and 0 <= j <= 2:
-                c[0].append(board[i][j])
-            elif  0 <= i <= 2 and 3 <= j <= 5:
-                c[1].append(board[i][j])
-            elif  0 <= i <= 2 and 6 <= j <= 8:
-                c[2].append(board[i][j])
-            elif 3 <= i <= 5 and 0 <= j <= 2:
-                c[3].append(board[i][j])
-            elif  3 <= i <= 5 and 3 <= j <= 5:
-                c[4].append(board[i][j])
-            elif  3 <= i <= 5 and 6 <= j <= 8:
-                c[5].append(board[i][j])
-            elif 6 <= i <= 8 and 0 <= j <= 2:
-                c[6].append(board[i][j])
-            elif  6 <= i <= 8 and 3 <= j <= 5:
-                c[7].append(board[i][j])
-            elif  6 <= i <= 8 and 6 <= j <= 8:
-                c[8].append(board[i][j])
+    def new_varianti(self, r, c):
+        row = self.get_row(r)
+        print(row)
+        col = self.get_col(c)
+        cub = self.get_cub(r, c)
+        p = set(range(1,10))
+        g = set(row + col + cub)
+        new_var = list(p - g)
+        self.varianti[r][c] = new_var
 
-    cub = all(all(f in i for f in x) for i in c)
-    return all(i for i in (row, col, cub))
+    def solve(self):
+        while not self.if_possible_complete:
+            for row in range(9):
+                for col in range(9):
+                    if self.field[row][col] == 0: self.new_varianti(row, col)
+                    if len(self.varianti[row][col]) == 1: self.field[row][col] = self.varianti[row][col].pop()
+
+    @property
+    def if_possible_complete(self):
+        for row in self.field:
+            if 0 in row:
+                return False
+        return True
+
+    def get_row(self, r):
+        return [n for n in self.field[r] if n != 0]
+
+    def get_col(self, c):
+        return [row[c] for row in self.field if row[c] != 0]
+
+    def get_cub(self, r, c):
+        sq = []
+        i = int(r/3) 
+        j = int(c/3)
+        ri = range(i*3, (i*3)+3)
+        rj = range(j*3, (j*3)+3)
+        for ni in ri:
+            for nj in rj:
+                n = self.field[ni][nj]
+                if n != 0:
+                    sq.append(n)
+        return sq
+
+x = [[0,3,4,6,7,8,9,1,2],
+    [6,7,2,1,9,5,3,4,8],
+    [1,9,8,3,4,2,5,6,7],
+    [8,5,9,7,6,1,4,2,3],
+    [4,2,6,8,5,3,7,9,1],
+    [7,1,3,9,2,4,8,5,6],
+    [9,6,1,5,3,7,2,8,4],
+    [2,8,7,4,1,9,6,3,5],
+    [3,4,5,2,8,6,1,7,9]]
+
+print(sudoku(x))
+
+# 0  1  2  3  4  5  6  7  8 
+# 9  10 11 12 13 14 15 16 17
+# 18 29 20 21 22 23 24 25 26
+
+# 27 28 29 30 31 32 33 34 35
+# 36 37 38 39 40 41 42 43 44
+# 45 46 47 48 49 50 51 52 53
+
+# 54 55 56 57 58 59 60 61 62
+# 63 64 65 66 67 68 69 70 71
+# 72 73 74 75 76 77 78 79 80
 
 
-x = [
-[5, 3, 4, 6, 7, 8, 9, 1, 2], 
-[6, 7, 2, 1, 9, 5, 3, 4, 8],
-[1, 9, 8, 3, 4, 2, 5, 6, 7],
-[8, 5, 9, 7, 6, 1, 4, 2, 3],
-[4, 2, 6, 8, 5, 3, 7, 9, 1],
-[7, 1, 3, 9, 2, 4, 8, 5, 6],
-[9, 6, 1, 5, 3, 7, 2, 8, 4],
-[2, 8, 7, 4, 1, 9, 6, 3, 5],
-[3, 4, 5, 2, 8, 6, 1, 7, 9]
-]
-
-print(valid_solution(x))  # True
-
-x = [
-[5, 3, 4, 6, 7, 8, 9, 1, 2], 
-[6, 7, 2, 1, 9, 0, 3, 4, 9],
-[1, 0, 0, 3, 4, 2, 5, 6, 0],
-[8, 5, 9, 7, 6, 1, 0, 2, 0],
-[4, 2, 6, 8, 5, 3, 7, 9, 1],
-[7, 1, 3, 9, 2, 4, 8, 5, 6],
-[9, 0, 1, 5, 3, 7, 2, 1, 4],
-[2, 8, 7, 4, 1, 9, 6, 3, 5],
-[3, 0, 0, 4, 8, 1, 1, 7, 9]
-
-]
-print(valid_solution(x))  # False
