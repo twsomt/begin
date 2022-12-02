@@ -1,30 +1,96 @@
-# DODELAT'
+def is_interesting(x, awesome_phrases):
+    '''
+    Функция определяет, является ли число "интересным".
+    Интересные числа - это 3 или более значные числа, которые соответствуют одному или нескольким из следующих критериев:
+    - Любая цифра, за которой следуют все нули: 100, 90000
+    - Каждая цифра - это одно и то же число: 1111
+    - Цифры идут последовательно, дополняя *: 1234
+    - Цифры идут последовательно, уменьшаясь на **: 4321
+    - Цифры представляют собой палиндром: 1221 или 73837
+    - Цифры соответствуют одному из значений в массиве awesome_phrases
+    * Для увеличивающихся последовательностей 0 должно быть после 9, а не перед 1, как в 7890.
+    ** Для уменьшающихся последовательностей 0 должно быть после 1, а не перед 9, как в 3210.
+    '''
+    
+    def checker(x):
+        if x > 99:
+            x = str(x)
+            def is_round_num(x):
+                '''Любая цифра, за которой следуют все нули: 100, 90000.'''
+                return x.count('0') == len(x) - 1
 
-def is_interesting(number, awesome_phrases):
+            def is_one_component(x):
+                '''Каждая цифра - это одно и то же число: 1111'''
+                return len(set(x)) == 1
+            
+            def is_num_incementing(x):
+                '''Цифры идут последовательно, дополняя: 1234'''
+                x = list(map(int, x))
+                y = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+                i = y.index(x[0])
+                return x == y[i:i+len(x)]
 
+            def is_num_decrementing(x):
+                '''Цифры идут последовательно, уменьшаясь на: 4321'''
+                x = list(map(int, x))
+                y = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+                i = y.index(x[0])
+                return x == y[i:i+len(x)]
 
-    #проверить что число больше 100
-    interesting_conditions = (
-        lambda x: str(x).count('0') == len(x) - 1  # Любая цифра, за которой следуют все нули: 100, 90000
-        lambda x: len(set(str(x))) == 1            # Каждая цифра - это одно и то же число: 1111
-        lambda x:
-        lambda x:
-        lambda x:
-        lambda x:
-        lambda x:
-        lambda x:
-        lambda x:
-    )
+            def is_palindrom(x):
+                '''Является ли число палиндромом?'''
+                if len(x) % 2 == 0:
+                    return x[:int(len(x) / 2)] == x[int(len(x) / 2):][::-1]
+                else:
+                    return x[:int(len(x) / 2)] == x[int((len(x) + 1) / 2):][::-1]
+
+            def is_in_awesome(x):
+                '''Находится ли число в массиве awesome_phrases?'''
+                return int(x) in awesome_phrases
+
+            res = any(i for i in (is_round_num(x),
+                                  is_one_component(x),
+                                  is_num_incementing(x),
+                                  is_num_decrementing(x),
+                                  is_palindrom(x),
+                                  is_in_awesome(x)))
+            return res
+        else:
+            return False
+
+    if checker(x):
+        return 2
+    elif any(checker(i) for i in range(x + 1, x + 3)):
+        return 1
+    else:
+        return 0
     
 
+print(is_interesting(3236, []))
+
+def testing():
+    # тестовые данные
+    # ((аргументы для функции), правильный ответ)
+    test_data = (
+        # ((number, awesome_phrases), right_answer)
+        ((3, [1337, 256]), 0),
+        ((3236, [1337, 256]), 0),
+        ((11207, []), 0),
+        ((11208, []), 0),
+        ((11209, []), 1),
+        ((11210, []), 1),
+        ((11211, []), 2),
+        ((1335, [1337, 256]), 1),
+        ((1336, [1337, 256]), 1),
+        ((1337, [1337, 256]), 2),
+    )
+    for func_args, right_answer in test_data:
+        number, awesome_phrases = func_args
+        answer = is_interesting(number, awesome_phrases)
+        print(f"number: {number}, awesome_phrases: {awesome_phrases}, " + \
+            f"right_answer: {right_answer}, answer: {answer}, " + \
+            f"test: {right_answer == answer}")
 
 
-
-
-
-# Цифры идут последовательно, дополняя †: 1234
-# Цифры идут последовательно, уменьшаясь на‡: 4321
-# Цифры представляют собой палиндром: 1221 или 73837
-# Цифры соответствуют одному из значений в массиве awesome_phrases
-# † Для увеличивающихся последовательностей 0 должно быть после 9, а не перед 1, как в 7890.
-# ‡ Для уменьшающихся последовательностей 0 должно быть после 1, а не перед 9, как в 3210.
+if __name__ == '__main__':
+    testing()
