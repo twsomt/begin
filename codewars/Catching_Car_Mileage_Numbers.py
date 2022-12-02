@@ -52,12 +52,9 @@ def is_interesting(x, awesome_phrases):
         else:
             return False
 
-    if checker(x):
-        return 2
-    elif any(checker(i) for i in range(x + 1, x + 3)):
-        return 1
-    else:
-        return 0
+    if checker(x): return 2
+    elif any(checker(i) for i in range(x + 1, x + 3)): return 1
+    else: return 0
 
 
 def testing():
