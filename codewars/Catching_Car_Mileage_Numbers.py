@@ -24,23 +24,21 @@ def is_interesting(x, awesome_phrases):
                 '''Каждая цифра - это одно и то же число: 1111'''
                 return len(set(x)) == 1
             
-            def is_num_incementing(x):
+            def is_num_incementing_or_decrementing(x):
                 '''Цифры идут последовательно, дополняя: 1234'''
                 x = list(map(int, x))
                 y = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+                z = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
                 i = y.index(x[0])
-                return x == y[i:i+len(x)]
-
-            def is_num_decrementing(x):
-                '''Цифры идут последовательно, уменьшаясь на: 4321'''
-                x = list(map(int, x))
-                y = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
-                i = y.index(x[0])
-                return x == y[i:i+len(x)]
+                j = z.index(x[0])
+                return x == y[i:i+len(x)] or x == z[j:j+len(x)] 
 
             def is_palindrom(x):
                 '''Является ли число палиндромом?'''
-                return x == x[::-1]
+                if len(x) % 2 == 0:
+                    return x[:int(len(x) / 2)] == x[int(len(x) / 2):][::-1]
+                else:
+                    return x[:int(len(x) / 2)] == x[int((len(x) + 1) / 2):][::-1]
 
             def is_in_awesome(x):
                 '''Находится ли число в списке awesome_phrases?'''
@@ -48,8 +46,7 @@ def is_interesting(x, awesome_phrases):
 
             res = any(i for i in (is_round_num(x),
                                   is_one_component(x),
-                                  is_num_incementing(x),
-                                  is_num_decrementing(x),
+                                  is_num_incementing_or_decrementing(x),
                                   is_palindrom(x),
                                   is_in_awesome(x)))
             return res
