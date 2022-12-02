@@ -32,8 +32,7 @@ def is_interesting(x, awesome_phrases):
                 x = list(map(int, x))
                 y = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
                 z = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
-                i = y.index(x[0])
-                j = z.index(x[0])
+                i, j = y.index(x[0]), z.index(x[0])
                 return x == y[i:i+len(x)] or x == z[j:j+len(x)] 
 
             def is_palindrom(x):
