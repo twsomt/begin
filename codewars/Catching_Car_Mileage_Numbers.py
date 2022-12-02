@@ -64,9 +64,7 @@ def is_interesting(x, awesome_phrases):
         return 1
     else:
         return 0
-    
 
-print(is_interesting(3236, []))
 
 def testing():
     # тестовые данные
