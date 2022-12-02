@@ -40,10 +40,7 @@ def is_interesting(x, awesome_phrases):
 
             def is_palindrom(x):
                 '''Является ли число палиндромом?'''
-                if len(x) % 2 == 0:
-                    return x[:int(len(x) / 2)] == x[int(len(x) / 2):][::-1]
-                else:
-                    return x[:int(len(x) / 2)] == x[int((len(x) + 1) / 2):][::-1]
+                return x == x[::-1]
 
             def is_in_awesome(x):
                 '''Находится ли число в списке awesome_phrases?'''
