@@ -45,7 +45,7 @@ def is_interesting(x, awesome_phrases):
                     return x[:int(len(x) / 2)] == x[int((len(x) + 1) / 2):][::-1]
 
             def is_in_awesome(x):
-                '''Находится ли число в массиве awesome_phrases?'''
+                '''Находится ли число в списке awesome_phrases?'''
                 return int(x) in awesome_phrases
 
             res = any(i for i in (is_round_num(x),
