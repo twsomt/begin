@@ -43,11 +43,14 @@ def is_interesting(x, awesome_phrases):
                 '''Находится ли число в списке awesome_phrases?'''
                 return int(x) in awesome_phrases
 
-            return any(i for i in (is_round_num(x),
-                                   is_one_component(x),
-                                   is_num_incementing_or_decrementing(x),
-                                   is_palindrom(x),
-                                   is_in_awesome(x)))
+            for i in (is_round_num(x),
+                      is_one_component(x),
+                      is_num_incementing_or_decrementing(x),
+                      is_palindrom(x),
+                      is_in_awesome(x)):
+                if i:
+                    return i
+            return False
         else:
             return False
 
